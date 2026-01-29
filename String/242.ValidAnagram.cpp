@@ -18,6 +18,15 @@
 class Solution {
 public:
     bool isAnagram(string s, string t) {
-        
+        int visited[26] = {0};
+        if(s.length() != t.length())return false;
+        for(char i:s){
+            visited[i-'a']++;
+        }
+        for(char i:t){
+            visited[i-'a']--;
+            if(visited[i-'a']<0)return false;
+        }
+        return true;
     }
 };
