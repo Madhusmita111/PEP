@@ -40,6 +40,22 @@ void insertAtEnd(Node* (&head), int val){
 
 }
 
+void deleteEnd(Node* &head){
+    if(head == nullptr)return;
+    if(head -> next == head){
+        head = nullptr;
+        delete head;
+    }
+    Node* temp = head;
+    while(temp->next->next != head){
+        temp = temp->next;
+    }
+    Node* toDel = temp->next;
+    temp->next = head;
+    delete toDel;
+}
+
+
 void print(Node* (&head)){
     Node* temp = head;
     do{
@@ -47,13 +63,13 @@ void print(Node* (&head)){
         temp = temp -> next;
     }while(temp!=head);
 }
-void print(Node* (&head)){
-    Node* node = head;
-    while(node->next != nullptr){
-        cout<<node->data<<"->";
-        node = node->next;
-    }
-}
+// void print(Node* (&head)){
+//     Node* node = head;
+//     while(node->next != nullptr){
+//         cout<<node->data<<"->";
+//         node = node->next;
+//     }
+// }
 
 int main(){
     Node* head = nullptr;
@@ -61,4 +77,6 @@ int main(){
     insertAtEnd(head,6);
     insertAtEnd(head,7);
     insertAtEnd(head,8);
+    deleteEnd(head);
+    print(head);
 }
