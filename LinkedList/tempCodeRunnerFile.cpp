@@ -1,0 +1,1 @@
+deleteEnd(head);

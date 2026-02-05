@@ -98,6 +98,57 @@ void DeletionFromEnd(Node* (&head)){
     // head = node;
 }
 
+
+void deletionFromN(Node* head, int n){
+
+    if(head == nullptr)return;
+        if(n==1){
+        Node* temp = head;
+        head = head->next;
+        delete temp;
+        return;
+    }
+    Node* temp = head;
+    // Node* prev = new Node(0);
+    // prev->next = head;
+    // Node* node = prev;
+    // int count = 0;
+
+    // while(temp->next != nullptr && count<n){
+    //     temp = temp->next;
+    //     count++;
+    
+    // }
+
+
+    for(int i=1; i<n-1 && temp != nullptr; i++){
+        temp = temp->next;
+    }
+    if(temp == nullptr || temp->next == nullptr)return;
+    Node* toDel = temp->next;
+    temp->next = temp->next->next;
+    delete toDel;
+}
+
+int countt(Node* &head){
+    Node* node = head;
+    int count = 0;
+    while(node != 0){
+        if(node->data % 2  == 0){
+            count++;
+        }
+        node = node->next;
+    }
+    return count;
+}
+
+bool keyChecking(Node* head, int key){
+    Node* temp = head;
+    if(temp->data == key)return true;
+    if(temp->next == nullptr)return false;
+    return keyChecking(temp->next,key);
+
+}
 void printLinkedList(Node* head){
     Node* temp = head;
     while(temp != nullptr){
@@ -120,12 +171,15 @@ int main(){
     Node* head = nullptr;
     // insertionAtEnd(head, 4);
     insertionAtBegin(head,2);
-    printLinkedList(head);
-    // insertionAtBegin(head,3);
-    // insertionAtBegin(head,4);
-    // insertionAtBegin(head,9);
-    DeletionFromEnd(head);
+    // printLinkedList(head);
+    insertionAtBegin(head,3);
+    insertionAtBegin(head,4);
+    insertionAtBegin(head,9);
+    // DeletionFromEnd(head);
     // insertAtN(head,10,1);
-    printLinkedList(head);
+    // deletionFromN(head,3);
+    // printLinkedList(head);
+    // cout<<countt(head);
+    cout<<keyChecking(head,4);
 
 }
